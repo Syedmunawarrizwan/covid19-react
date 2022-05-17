@@ -1,8 +1,9 @@
 # Covid19 React by Syed Munawar Rizwan
 
-demo link https://covid-19-react-9d4c4.web.app/
+Demo link https://covid-19-react-9d4c4.web.app/
 
-Thia project shows the live Covid19 data across the world along with the filters from one date to another date, user can search the country and get data of that particular country.
+This project shows the live Covid19 data across the world along with the filters from one date to another date, user can search the country and get data of that particular country.
+
 Api's are used from ("https://api.covid19api.com") for displaying the data in table, bootstap is used for styling. 
 
 ### `npm start`
