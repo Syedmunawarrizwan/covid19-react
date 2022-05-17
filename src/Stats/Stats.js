@@ -144,7 +144,7 @@ const Stats = () => {
             <label htmlFor="end_date">End Date</label>
             <input type="date" id="end_date" name="end_date"></input>
           </div>
-          <button className="btn btn-warning">Apply</button>
+          <button className="btn btn-warning">Show Graph</button>
         </div>
       </form>
 
