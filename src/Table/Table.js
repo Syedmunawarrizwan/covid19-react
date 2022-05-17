@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./Table.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css";
 const Table = () => {
