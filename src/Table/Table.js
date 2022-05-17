@@ -31,13 +31,6 @@ const Table = () => {
   return (
     <div className="table-div">
       <div>
-        {/* <label>Search By Country</label>
-        <input
-          type="text"
-          onChange={(e) => {
-            filterFromUserInput(e.target.value);
-          }}
-        /> */}
         <label htmlFor="exampleDataList" className="form-label">
           Search by CountryName
         </label>
@@ -51,11 +44,13 @@ const Table = () => {
           }}
         />
         <datalist id="datalistOptions">
-          <option value="Austrila" />
-          <option value="India" />
+          {countriesData.map((country) => {
+            return <option value={country.Country} />;
+          })}
+          {/* <option value="India" />
           <option value="United state of America" />
           <option value="Canada" />
-          <option value="New Zealand" />
+          <option value="New Zealand" /> */}
         </datalist>
         <h1>List</h1>
       </div>
