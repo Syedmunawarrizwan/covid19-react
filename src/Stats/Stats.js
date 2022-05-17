@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import "./Stats.css";
+import "../../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -96,7 +99,7 @@ const Stats = () => {
         {
           data: dataSet,
           label: "cases",
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
+          backgroundColor: "#e28743",
         },
       ],
     };
@@ -114,11 +117,11 @@ const Stats = () => {
   };
 
   return (
-    <div>
+    <div className="stats-div">
       <form onSubmit={applyFilters}>
         <div className="filters-panel">
           <div className="form-group">
-            <label htmlFor="location">Location</label>
+            <label htmlFor="location">Country</label>
             <select id="location" name="location">
               {countriesData.map((country) => {
                 return <option>{country.Slug}</option>;
@@ -141,11 +144,10 @@ const Stats = () => {
             <label htmlFor="end_date">End Date</label>
             <input type="date" id="end_date" name="end_date"></input>
           </div>
-          <button>Apply</button>
+          <button className="btn btn-warning">Apply</button>
         </div>
       </form>
 
-      <h1>List</h1>
       {Object.keys(graphData).length !== 0 ? (
         <Bar options={graphOptions} data={graphData}></Bar>
       ) : null}

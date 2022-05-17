@@ -5,8 +5,9 @@ import Table from "./Table/Table";
 function App() {
   return (
     <div className="App">
-      <h1>Test Is it working</h1>
+      <h1>Covid-19</h1>
       <Stats></Stats>
+      <div></div>
       <Table></Table>
     </div>
   );

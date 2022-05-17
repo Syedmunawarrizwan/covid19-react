@@ -1,12 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./Table.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "../../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css";
 const Table = () => {
-  const [countriesName, setCountriesName] = useState([]);
-  const [countriesConfirmed, setCountriesConfirmed] = useState([]);
-  const [countriesDeaths, setCountriesDeaths] = useState([]);
-  const [countriesRecoverd, setCountriesRecoverd] = useState([]);
-  const [search, setSearch] = useState("");
+  const [countriesData, setCountriesData] = useState([]);
+  const [originalData, setOriginalData] = useState([]);
+
+  // const [debounceTimer, setDebounceTimer] = useState(null);
   const baseUrl = "https://api.covid19api.com";
 
   useEffect(() => {
@@ -16,26 +17,50 @@ const Table = () => {
   const getCountriesName = async () => {
     const rawData = await fetch(`${baseUrl}/summary`);
     const jsonData = await rawData.json();
-    setCountriesName(jsonData.Countries);
-    setCountriesConfirmed(jsonData.Countries);
-    setCountriesDeaths(jsonData.Countries);
-    setCountriesRecoverd(jsonData.Countries);
-    console.log(jsonData.Countries);
+    setCountriesData(jsonData.Countries);
+    setOriginalData(jsonData.Countries);
   };
 
-  const getFromUserInput = () => {};
+  const filterFromUserInput = (searchVal) => {
+    console.log("called");
+    const searchData = originalData.filter((country) => {
+      return country.Country.toLowerCase().includes(searchVal.toLowerCase());
+    });
+    setCountriesData(searchData);
+  };
 
   return (
     <div className="table-div">
       <div>
+        {/* <label>Search By Country</label>
         <input
           type="text"
           onChange={(e) => {
-            setSearch(e.target.value);
+            filterFromUserInput(e.target.value);
+          }}
+        /> */}
+        <label htmlFor="exampleDataList" className="form-label">
+          Search by CountryName
+        </label>
+        <input
+          className="form-control"
+          list="datalistOptions"
+          id="exampleDataList"
+          placeholder="Type to search..."
+          onChange={(e) => {
+            filterFromUserInput(e.target.value);
           }}
         />
+        <datalist id="datalistOptions">
+          <option value="Austrila" />
+          <option value="India" />
+          <option value="United state of America" />
+          <option value="Canada" />
+          <option value="New Zealand" />
+        </datalist>
+        <h1>List</h1>
       </div>
-      <table>
+      <table className="table table-dark table-hover">
         <tbody>
           <tr>
             <th>Country</th>
@@ -43,32 +68,16 @@ const Table = () => {
             <th>Deaths</th>
             <th>Recovered</th>
           </tr>
-
-          <tr>
-            {" "}
-            <td>
-              {countriesName.map((country) => {
-                return <tr>{country.Country}</tr>;
-              })}
-            </td>
-            <td>
-              {countriesConfirmed.map((country) => {
-                return <tr>{country.TotalConfirmed}</tr>;
-              })}
-            </td>
-            <td>
-              {" "}
-              {countriesDeaths.map((country) => {
-                return <tr>{country.TotalDeaths}</tr>;
-              })}
-            </td>
-            <td>
-              {" "}
-              {countriesRecoverd.map((country) => {
-                return <tr>{country.TotalRecovered}</tr>;
-              })}
-            </td>
-          </tr>
+          {countriesData.map((country) => {
+            return (
+              <tr>
+                <td className="table-primary">{country.Country}</td>
+                <td className="table-primary">{country.TotalConfirmed}</td>
+                <td className="table-primary">{country.TotalDeaths}</td>
+                <td className="table-primary">{country.TotalRecovered}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
