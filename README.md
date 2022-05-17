@@ -1,10 +1,9 @@
-# Getting Started with Create React App
+# Covid19 React by Syed Munawar Rizwan
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+demo link https://covid-19-react-9d4c4.web.app/
 
-## Available Scripts
-
-In the project directory, you can run:
+Thia project shows the live Covid19 data across the world along with the filters from one date to another date, user can search the country and get data of that particular country.
+Api's are used from ("https://api.covid19api.com") for displaying the data in table, bootstap is used for styling. 
 
 ### `npm start`
 
